@@ -14,4 +14,4 @@ Briefly Introduce the function of different packages:
 7. express-flash : error message package when authentication goes wrong
 
 Problem:
-When I have signed in, I can't get my user information by 'req.user.name'
+When I signed in, I can't get my user information by 'req.user.name'
