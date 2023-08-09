@@ -15,7 +15,6 @@ const mongoConnect = require('./mongo');
 const User = require('./models/userSchema');
 
 mongoConnect.connect()
-
 const initializePassport = require('./passport-config')
 initializePassport(passport)
 

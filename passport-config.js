@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 const User = require('./models/userSchema');
 
 function initialize(passport){
-  // this function verify the user password
   passport.use(new LocalStrategy({ usernameField: 'email' },
     async function authenticateUser(email, password, done) {
       const user = await User.findOne({ email: email })
