@@ -11,4 +11,6 @@ Briefly Introduce the function of different packages:
 6. express-session : save the user information and stay signed in
 7. express-flash : error message package when authentication goes wrong
 
+Remember to create .env file to configur your mongo_URI
+
 Need a coworking email for creating mongoDB Atlas database
