@@ -11,5 +11,4 @@ Briefly Introduce the function of different packages:
 6. express-session : save the user information and stay signed in
 7. express-flash : error message package when authentication goes wrong
 
-Problem:
-Username Duplication Problem when newing a user by MongoDB
+Need a coworking email for creating mongoDB Atlas database
