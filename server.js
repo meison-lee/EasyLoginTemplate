@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
+const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
 const mongoConnect = require('./mongo');
 const User = require('./models/userSchema');
@@ -26,14 +27,30 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 10,
+  },
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }))
+app.use(cookieParser());
 app.use(passport.initialize())
 app.use(passport.session())
 
 app.get('/', checkAuthenticated, (req, res) => {
   console.log(req.user.id)
   res.render('index.ejs', { name: req.user.name })
+})
+
+app.post('/logout', checkAuthenticated, (req, res, next) => {
+  console.log("logout")
+  req.logOut((err) => {
+    if (err) next(err);
+
+    req.session.destroy((err) => {
+      if (err) next(err);
+      res.redirect('/login');
+    })
+  })
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
