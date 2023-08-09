@@ -10,16 +10,15 @@ const flash = require('express-flash')
 const session = require('express-session')
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
+const path = require('path');
 const mongoConnect = require('./mongo');
 const User = require('./models/userSchema');
-
 
 mongoConnect.connect()
 
 const initializePassport = require('./passport-config')
 initializePassport(passport)
 
-// const users = []
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
@@ -37,7 +36,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.get('/', checkAuthenticated, (req, res) => {
-  console.log(req.user.id)
   res.render('index.ejs', { name: req.user.name })
 })
 
