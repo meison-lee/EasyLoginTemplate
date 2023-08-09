@@ -60,7 +60,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
       email: req.body.email,
       password: hashedPassword,
     });
-    console.log(newUser)
+
     await newUser.save();
 
     res.redirect('/login')
